@@ -3,6 +3,7 @@ package net.ozaydin.serkan.easy_csv_creator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import net.ozaydin.serkan.easy_csv.EasyCsv;
 import net.ozaydin.serkan.easy_csv.FileCallback;
@@ -32,15 +33,17 @@ public class MainActivity extends AppCompatActivity {
         easyCsv.setSeparatorColumn(".");
         easyCsv.setSeperatorLine("-");
 
-        easyCsv.createCsvFile("Easycsv", headerList, dataList, WRITE_PERMISSON_REQUEST_CODE, new FileCallback() {
+        String fileName="EasyCsv";
+
+        easyCsv.createCsvFile(fileName, headerList, dataList, WRITE_PERMISSON_REQUEST_CODE, new FileCallback() {
             @Override
             public void onSuccess(File file) {
-
+                Toast.makeText(MainActivity.this,"Saved file",Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFail(String err) {
-
+                Toast.makeText(MainActivity.this,"Error",Toast.LENGTH_SHORT).show();
 
             }
         });
