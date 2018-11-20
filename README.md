@@ -2,13 +2,9 @@
 #  easy-csv
 
 Creates csv file for android
-<<<<<<< HEAD
 
-![alt text](./img/ss.png)
-=======
-![alt text](https://ibb.co/ikWh5V "Easy CSV")
->>>>>>> 272520f242ac2fda0065d7088756cdc9d82c120c
-  
+
+<img src="./img/ss.png"  width="200" height="400" />
 
 ##  Download
 
