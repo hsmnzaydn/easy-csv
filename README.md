@@ -45,8 +45,14 @@ implementation 'com.github.hsmnzaydn:easy-csv:1.0.0'
 EasyCsv easyCsv = new EasyCsv(MainActivity.this);
 
 ```
+* to output the file in diffrent charset create EasyCsv object with below constructer
+``` java
 
-  
+EasyCsv easyCsv = new EasyCsv(MainActivity.this, StandardCharsets.YOUR_CHOOISE);
+
+```
+
+
 
 **Step 2: Create your headerlist and datalist**
 
@@ -85,6 +91,10 @@ public void onFail(String err) {
 });
 
 ```
+# Changelog
+* 3/5/2020
+— you can output the file with chosen Charset like UTF-8 and UTF-16 etc ...
+
 # License
 <pre>
 Copyright 2018 Huseyin Serkan Ozaydin

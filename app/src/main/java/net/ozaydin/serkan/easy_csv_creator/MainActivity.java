@@ -9,6 +9,7 @@ import net.ozaydin.serkan.easy_csv.EasyCsv;
 import net.ozaydin.serkan.easy_csv.FileCallback;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EasyCsv easyCsv = new EasyCsv(MainActivity.this);
+        EasyCsv easyCsv = new EasyCsv(MainActivity.this, StandardCharsets.UTF_16LE);
+        easyCsv = new EasyCsv(MainActivity.this, StandardCharsets.UTF_8); //with custom Charset outputfile
 
         List<String> headerList = new ArrayList<>();
         headerList.add("Name.Surname.Age.Adress.Location.Education-");
