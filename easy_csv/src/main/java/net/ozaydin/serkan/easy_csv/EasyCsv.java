@@ -12,9 +12,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -23,7 +23,7 @@ public class EasyCsv {
     private Activity activity;
     private File file;
     private OutputStream outputStream;
-
+    private Charset outputCharset;
     private String separatorColumn=",";
     private String seperatorLine="\r\n";
 
@@ -32,7 +32,10 @@ public class EasyCsv {
         this.activity = activity;
     }
 
-
+    public EasyCsv(Activity activity, Charset outputCharset) {
+        this.activity = activity;
+        this.outputCharset = outputCharset;
+    }
     /**
      * It is used to create a csv file by processing the data received from the user.
      * @param fileName Name of will create file
@@ -103,6 +106,9 @@ public class EasyCsv {
                         @Override
                         public void onNext(Object o) {
                             String dataWithLineBreak = (String) o;
+                            if (outputCharset != null) {
+                                dataWithLineBreak = Utils.convertCharset(outputCharset, dataWithLineBreak);
+                            }
                             try {
                                 finalFo.write(dataWithLineBreak.getBytes());
                             } catch (IOException e) {

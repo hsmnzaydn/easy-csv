@@ -1,5 +1,8 @@
 package net.ozaydin.serkan.easy_csv.Utility;
 
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +32,20 @@ public class Utils {
         return strings;
     }
 
+    public static String convertCharset(Charset outputCharset, String text) {
+        try {
+            Charset defaultCharset = Charset.defaultCharset();
+            ByteBuffer inputBuffer = ByteBuffer.wrap(text.getBytes());
 
+            CharBuffer data = defaultCharset.decode(inputBuffer);
+            ByteBuffer outputBuffer = outputCharset.encode(data);
+            byte[] outputData = outputBuffer.array();
+
+            return new String(outputData, outputCharset);
+
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }
+    }
 
 }
