@@ -37,6 +37,7 @@ public class EasyCsv {
     }
     /**
      * It is used to create a csv file by processing the data received from the user.
+     * File will be saved in the default external storage directory.
      * @param fileName Name of will create file
      * @param headerList Header list of csv file
      * @param data List of csv data
@@ -44,6 +45,23 @@ public class EasyCsv {
      * @param fileCallback Callback of file
      */
     public void createCsvFile(String fileName, List<String> headerList, List<String> data, int permissionRequestCode, final FileCallback fileCallback) {
+        createCsvFile(Environment.getExternalStorageDirectory().getAbsolutePath(), fileName, headerList, data, permissionRequestCode, fileCallback);
+    }
+
+    /**
+     * It is used to create a csv file by processing the data received from the user at a custom path.
+     * @param filePath Custom path where the file will be saved (e.g., Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath())
+     * @param fileName Name of the file to create
+     * @param headerList Header list of csv file
+     * @param data List of csv data
+     * @param permissionRequestCode requested write file code for catch at in activity
+     * @param fileCallback Callback of file
+     */
+    public void createCsvFile(String filePath, String fileName, List<String> headerList, List<String> data, int permissionRequestCode, final FileCallback fileCallback) {
+        if (filePath == null || filePath.isEmpty()) {
+            fileCallback.onFail("File path cannot be null or empty");
+            return;
+        }
         if (PermissionUtility.askPermissionForActivity(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE, permissionRequestCode)) {
             fileName = fileName.replace(" ", "_").replace(":", "_");
 
