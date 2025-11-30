@@ -72,7 +72,7 @@ easyCsv.setSeparatorColumn(".");
 easyCsv.setSeperatorLine("-");
 ```
 
-**Step 4: Select separators for column and line**
+**Step 4: Create CSV file**
 
 ``` java
 
@@ -80,7 +80,31 @@ easyCsv.setSeperatorLine("-");
 * @param fileName Name of the file to be created
 * @param WRITE_PERMISSON_REQUEST_CODE EasyCsv request runtime permission for Write permission to user. When user "Accept" or "Decline" for you can handler
 */
-easyCsv.createCsvFile(fileName, headerList, dataList WRITE_PERMISSON_REQUEST_CODE, new FileCallback() {
+easyCsv.createCsvFile(fileName, headerList, dataList, WRITE_PERMISSON_REQUEST_CODE, new FileCallback() {
+@Override
+public void onSuccess(File file) {
+}
+
+@Override
+public void onFail(String err) {
+}
+});
+
+```
+
+**Step 5 (Optional): Save to a custom path (e.g., Downloads folder)**
+
+``` java
+
+// Get the Downloads folder path
+String downloadPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
+
+/**
+* @param filePath Custom path where the file will be saved
+* @param fileName Name of the file to be created
+* @param WRITE_PERMISSON_REQUEST_CODE EasyCsv request runtime permission for Write permission to user. When user "Accept" or "Decline" for you can handler
+*/
+easyCsv.createCsvFile(downloadPath, fileName, headerList, dataList, WRITE_PERMISSON_REQUEST_CODE, new FileCallback() {
 @Override
 public void onSuccess(File file) {
 }
