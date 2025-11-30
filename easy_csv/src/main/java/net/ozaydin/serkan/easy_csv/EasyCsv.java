@@ -2,7 +2,6 @@ package net.ozaydin.serkan.easy_csv;
 
 import android.Manifest;
 import android.app.Activity;
-import android.os.Environment;
 
 import net.ozaydin.serkan.easy_csv.Utility.PermissionUtility;
 import net.ozaydin.serkan.easy_csv.Utility.Utils;
@@ -66,7 +65,7 @@ public class EasyCsv {
         if (PermissionUtility.askPermissionForActivity(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE, permissionRequestCode)) {
             fileName = fileName.replace(" ", "_").replace(":", "_");
 
-            file = new File(filePath + File.separator + fileName + ".csv");
+            file = new File(activity.getExternalFilesDir(null) + File.separator + fileName + ".csv");
             outputStream = null;
 
             try {
