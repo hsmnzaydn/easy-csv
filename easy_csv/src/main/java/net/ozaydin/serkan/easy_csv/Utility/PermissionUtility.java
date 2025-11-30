@@ -2,13 +2,13 @@ package net.ozaydin.serkan.easy_csv.Utility;
 
 import android.app.Activity;
 import android.content.pm.PackageManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.support.v4.app.ActivityCompat.requestPermissions;
+import static androidx.core.app.ActivityCompat.requestPermissions;
 
 public class PermissionUtility {
 
